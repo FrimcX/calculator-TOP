@@ -1,12 +1,35 @@
+body{
+    flex: 1;
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 0;
+}
+
 .calculator {
+    width: 90%;
+    height: 90%;
+    flex: 1;
     background-color: #46be;
     display: flex;
+    gap: 12px;
     padding: 10px;
     border-radius: 5px;
 }
 
+.functionalSide {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .display {
-    height: 30px;
+    flex: 1;
+    height: 35px;
     background-color: #fff;
     border-radius: 5px;
     border: 1px solid #000;
@@ -24,10 +47,11 @@ button {
 }
 
 .buttonsContainer {
+    flex: 5;
     display:flex;
     flex-direction: column;
     gap: 5px; /*-----------------------*/
-    padding: 10px 0 5px 0;
+    padding: 10px 0 0 0;
 }
 
 .buttonsContainer .firstRow,
@@ -40,13 +64,14 @@ button {
 .buttonsContainer .thirdRow .secondColumn .up,
 .buttonsContainer .thirdRow .secondColumn .down,
 .buttonsContainer .thirdRow .thirdColumn {
+    flex: 1;
     display: flex;
     gap: 5px;
 }
 
 .buttonsContainer .firstRow,
 .buttonsContainer .firstRow button {
-    flex: 1;
+    flex: 0.5;
 }
 
 .buttonsContainer button{
@@ -72,4 +97,13 @@ button {
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+
+/* ------------------------ historySide ----------------------------- */
+
+.historySide {
+    border: 1px solid #000;
+    background-color: #fff;
+    flex: 1;
+    border-radius: 5px;
 }
