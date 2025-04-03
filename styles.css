@@ -111,4 +111,17 @@ button {
     background-color: #fff;
     flex: 1;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding: 10px;
+    margin: 0;
+}
+
+.resultHistory {
+    margin: 5px 0;
+    padding: 5px 10px;
+    font-size: 18px;
+    background-color: #0004;
+    border-radius: 5px;
 }

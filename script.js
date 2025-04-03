@@ -8,6 +8,7 @@ let num1Point = false;
 let num2Point = false;
 const buttonsContainer = document.querySelector('.buttonsContainer');
 const writtenNumbers = document.querySelector('.writtenNumbers');
+const history = document.querySelector('.historySide');
 
 function add(a,b) {
     a = Number(a);
@@ -81,7 +82,12 @@ buttonsContainer.addEventListener('click', (element) => {
                 if (result === 'a') {
                     writtenNumbers.innerText = `You can't divide by 0! Try again with another number...`;
                     result = null; number1 = null; number2 = null;
-                } else {
+                } else { //operate result --------------------------
+                    const p = document.createElement('p');
+                    p.setAttribute('class', 'resultHistory');
+                    p.innerText = `${writtenNumbers.innerText} = ${result}`;
+                    history.appendChild(p);
+
                     writtenNumbers.innerText = `${result} ${element.target.id}`;
                     operator = element.target.id;
                     number1 = result;
@@ -112,6 +118,10 @@ buttonsContainer.addEventListener('click', (element) => {
                 writtenNumbers.innerText = `You can't divide by 0! Try again with another number...`;
                 result = null;
             } else {
+                const p = document.createElement('p');
+                p.setAttribute('class', 'resultHistory');
+                p.innerText = `${writtenNumbers.innerText} = ${result}`;
+                history.appendChild(p);
                 writtenNumbers.innerText = result;
             }
             number1 = result; number2 = null; operator = null; num1Point = false; num2Point = false;
@@ -137,6 +147,10 @@ buttonsContainer.addEventListener('click', (element) => {
         operator = null;
         num1Point = false;
         num2Point = false;
+        result = null;
         writtenNumbers.innerText = '';
+        while (history.firstChild) {
+            history.removeChild(history.firstChild);
+        }
     }
 });
