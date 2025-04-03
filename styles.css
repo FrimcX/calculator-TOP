@@ -63,7 +63,8 @@ button {
 .buttonsContainer .thirdRow .firstColumn .down,
 .buttonsContainer .thirdRow .secondColumn .up,
 .buttonsContainer .thirdRow .secondColumn .down,
-.buttonsContainer .thirdRow .thirdColumn {
+.buttonsContainer .thirdRow .thirdColumn .up,
+.buttonsContainer .thirdRow .thirdColumn .down {
     flex: 1;
     display: flex;
     gap: 5px;
@@ -97,6 +98,10 @@ button {
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+
+.backspace {
+    background-color: #a00;
 }
 
 /* ------------------------ historySide ----------------------------- */

@@ -4,6 +4,8 @@ let number1 = null;
 let number2 = null;
 let operator = null;
 let result = null;
+let num1Point = false;
+let num2Point = false;
 const buttonsContainer = document.querySelector('.buttonsContainer');
 const writtenNumbers = document.querySelector('.writtenNumbers');
 
@@ -50,7 +52,7 @@ buttonsContainer.addEventListener('click', (element) => {
             number1 = element.target.id;
             writtenNumbers.innerText = number1;
         } else if (operator === null) {
-            if ((result !== null) && (number2 === null)) {
+            if ((result !== null) && (number2 === null)) { //number pressed after obtaining a result
                 result = null;
                 number1 = element.target.id;
                 writtenNumbers.innerText = element.target.id;
@@ -91,6 +93,18 @@ buttonsContainer.addEventListener('click', (element) => {
             }
         }
     } 
+    else if (element.target.classList.contains('point')) {
+        if ((operator === null) && !num1Point) {
+            num1Point = true;
+            number1 = number1 + element.target.id;
+            writtenNumbers.innerText = number1;
+        }
+        if ((operator !== null) && !num2Point) {
+            num2Point = true;
+            number2 = number2 + element.target.id;
+            writtenNumbers.innerText = `${number1} ${operator} ${number2}`;
+        }
+    }
     else if (element.target.classList.contains('equals')) {
         if ((number1 !== null) && (operator !== null) && (number2 !== null)) {
             result = operate(number1,operator,number2);
@@ -100,13 +114,29 @@ buttonsContainer.addEventListener('click', (element) => {
             } else {
                 writtenNumbers.innerText = result;
             }
-            number1 = result; number2 = null; operator = null; 
+            number1 = result; number2 = null; operator = null; num1Point = false; num2Point = false;
         }
     } 
+    else if (element.target.classList.contains('backspace')) {
+        if ((number1 !== null) && (operator === null) && (number2 === null)) {
+            console.log('hello');
+            number1 = String(number1).split('').toSpliced(-1,1).join('');
+            writtenNumbers.innerText = number1;
+        } else if ((number1 !== null) && (operator !== null) && (number2 === null)) {
+            operator = null;
+            writtenNumbers.innerText = number1;
+        } else if ((number1 !== null) && (operator !== null) && (number2 !== null)) {
+            console.log('ciao');
+            number2 = String(number2).split('').toSpliced(-1,1).join('');
+            writtenNumbers.innerText = `${number1} ${operator} ${number2}`;
+        }
+    }
     else if (element.target.classList.contains('clear')) {
         number1 = null;
         number2 = null;
         operator = null;
+        num1Point = false;
+        num2Point = false;
         writtenNumbers.innerText = '';
     }
 });
