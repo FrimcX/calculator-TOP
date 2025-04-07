@@ -171,7 +171,7 @@ const eventHandler = function (e) {
                 createHistoryP(writtenNumbers.innerText, result);
                 writtenNumbers.innerText = result;
             }
-            number1 = result; result = null;number2 = null; operator = null; num1Point = false; num2Point = false;
+            number1 = result; number2 = null; operator = null; num1Point = false; num2Point = false;
         }
     } 
     else if (eventObj.class === 'backspace') { //----------------------BACKSPACE --------------------------
