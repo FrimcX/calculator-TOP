@@ -32,7 +32,7 @@ function multiply(a,b) {
 function divide(a,b) {
     a = Number(a);
     b = Number(b);
-    if ((b===0) || (a===0)) {
+    if ((b===0) || (a===0)) { //error handling
         return 'a';
     }
     return Number(a) / Number(b);
@@ -45,6 +45,13 @@ function operate(num1, opera, num2) {
         case ('x'): return multiply(num1,num2);
         case ('/'): return divide(num1,num2);
     }
+}
+
+function createHistoryP(operation, resultText) {
+    const p = document.createElement('p');
+    p.setAttribute('class', 'resultHistory');
+    p.innerText = `${operation} = ${resultText}`;
+    history.appendChild(p);
 }
 
 const eventHandler = function (e) {
@@ -88,9 +95,6 @@ const eventHandler = function (e) {
         eventObj.value = e.target.id;
     }
 
-    console.log(eventObj.type);
-    console.log(eventObj.class);
-    console.log(eventObj.value);
 
     if(eventObj.class ==='number') { //-----------------NUMBERS------------------------------------------
         if (number1 === null) {
@@ -125,12 +129,9 @@ const eventHandler = function (e) {
                 result = operate(number1,operator,number2); 
                 if (result === 'a') {
                     writtenNumbers.innerText = `You can't divide by 0! Try again with another number...`;
-                    result = null; number1 = null; number2 = null;
+                    result = null; number1 = null; operator = null; number2 = null;
                 } else { //operate result --------------------------
-                    const p = document.createElement('p');
-                    p.setAttribute('class', 'resule.targettory');
-                    p.innerText = `${writtenNumbers.innerText} = ${result}`;
-                    history.appendChild(p);
+                    createHistoryP(writtenNumbers.innerText, result);
 
                     writtenNumbers.innerText = `${result} ${eventObj.value}`;
                     operator = eventObj.value;
@@ -167,10 +168,7 @@ const eventHandler = function (e) {
                 writtenNumbers.innerText = `You can't divide by 0! Try again with another number...`;
                 result = null;
             } else {
-                const p = document.createElement('p');
-                p.setAttribute('class', 'resule.targettory');
-                p.innerText = `${writtenNumbers.innerText} = ${result}`;
-                history.appendChild(p);
+                createHistoryP(writtenNumbers.innerText, result);
                 writtenNumbers.innerText = result;
             }
             number1 = result; result = null;number2 = null; operator = null; num1Point = false; num2Point = false;
